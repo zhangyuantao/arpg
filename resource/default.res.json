@@ -1,0 +1,45 @@
+{
+	"groups": [
+		{
+			"keys": "bg_jpg,egret_icon_png,description_json,small_jpg,a_2_png,radiobutton_select_up_png,handle_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"name": "small_jpg",
+			"type": "image",
+			"url": "assets/small.jpg"
+		},
+		{
+			"name": "a_2_png",
+			"type": "image",
+			"url": "assets/a_2.png"
+		},
+		{
+			"name": "radiobutton_select_up_png",
+			"type": "image",
+			"url": "assets/radiobutton_select_up.png"
+		},
+		{
+			"name": "handle_png",
+			"type": "image",
+			"url": "assets/handle.png"
+		}
+	]
+}
