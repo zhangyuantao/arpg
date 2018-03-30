@@ -1,4 +1,6 @@
-// TypeScript file
+/**
+ * 摇杆
+ */
 class Joystick extends eui.Component{
     private radius:number; // 摇杆半径
     private tray:eui.Image;

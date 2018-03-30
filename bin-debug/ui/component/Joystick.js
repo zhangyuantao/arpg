@@ -8,7 +8,9 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
-// TypeScript file
+/**
+ * 摇杆
+ */
 var Joystick = (function (_super) {
     __extends(Joystick, _super);
     function Joystick() {
