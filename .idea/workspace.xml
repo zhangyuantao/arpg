@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="02d54a85-e9eb-4787-b5b4-99b03bafda2e" name="Default" comment="ignore debug目录">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/arpg.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+    <list default="true" id="02d54a85-e9eb-4787-b5b4-99b03bafda2e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.wing/launch.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.wing/settings.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.wing/tasks.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/AssetAdapter.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/LoadingUI.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/Main.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/Platform.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/ThemeAdapter.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/CharacterCtrl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/Game.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/KeyInputHandler.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/MapCtrl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/MapMgr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/gameCore/PlayerCtrl.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/scene1.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/bin-debug/ui/component/Joystick.js" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -244,7 +225,7 @@
       <option name="presentableId" value="Default" />
       <updated>1522216236227</updated>
       <workItem from="1522216238369" duration="36829000" />
-      <workItem from="1522372573902" duration="27083000" />
+      <workItem from="1522372573902" duration="27154000" />
     </task>
     <task id="LOCAL-00001" summary="删除debug目录">
       <created>1522407166938</created>
@@ -260,11 +241,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522407454096</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1">
+      <created>1522407700780</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1522407700780</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63912000" />
+    <option name="totallyTimeSpent" value="63983000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -298,7 +286,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="删除debug目录" />
     <MESSAGE value="ignore debug目录" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore debug目录" />
+    <MESSAGE value="1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
