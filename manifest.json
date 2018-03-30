@@ -12,13 +12,13 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/gameCore/CharacterCtrl.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/Platform.js",
 		"bin-debug/scene1.js",
 		"bin-debug/ThemeAdapter.js",
-		"bin-debug/gameCore/CharacterCtrl.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/gameCore/Game.js",
 		"bin-debug/gameCore/KeyInputHandler.js",
 		"bin-debug/gameCore/MapCtrl.js",
