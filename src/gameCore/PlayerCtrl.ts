@@ -22,14 +22,16 @@ class PlayerCtrl{
 	private speedX:number;
 	private speedY:number;
     private isMoving:boolean;
-	private isRight:boolean;
-	private isDown:boolean;
-    private arrivedCb:Function; // 到达map目标点回调
+	private arrivedCb:Function; // 到达map目标点回调
 
     private constructor(){
         if (PlayerCtrl.instance) throw 'CharacterCtrl.instance单例已存在！';
     }
 
+    /**
+     * 初始化
+     * @param player 玩家对象
+     */
 	init(player:any) {
 		let self = this;
         self.player = player;
@@ -58,17 +60,16 @@ class PlayerCtrl{
 
     private onJoystickEnd(){
         let self = this;
-        self.isMoving = false;
+        self.stopMove();
     }
 
 
     private keyHandler(event:egret.Event){
         let self = this;
         let isDown: boolean = event.type == "keydown";
-        if (!isDown){
-            self.isMoving = false;
-            return;
-        }
+        if (!isDown)
+            return self.stopMove();
+
         let dir = event.data;
 
         let playerPoint = MapMgr.instance.curMap.globalToLocal(self.player.x, self.player.y);
@@ -93,63 +94,86 @@ class PlayerCtrl{
 
 	private onFrameEnter(){
 		let self = this;
-		let player = self.player;
-        let map:MapCtrl = MapMgr.instance.curMap;
-
-		if (self.isMoving) {
-            // 左右移动
-            if (self.isRight) {
-                if (map.x + map.width > Game.stageWidth && player.x > self.boundRight)
-                    map.x -= self.speedX;
-                else
-                    player.x += self.speedX;
-            }
-            else {
-                if (map.x < 0 && player.x < self.boundLeft)
-                    map.x += self.speedX;
-                else
-                    player.x -= self.speedX;
-            }
-
-            // 上下移动
-            if (self.isDown) {
-                if (map.y + map.height > Game.stageHeight && player.y > self.boundDown)
-                    map.y -= self.speedY;
-                else
-                    player.y += self.speedY;
-            }
-            else {
-                if (map.y < 0 && player.y < self.boundUp)
-                    map.y += self.speedY;
-                else
-                    player.y -= self.speedY;
-            }
-
-            // map坐标边界值校验
-            if (map.x > 0) map.x = 0;
-            if (map.x < Game.stageWidth - map.width) map.x = Game.stageWidth - map.width;
-            if (map.y > 0) map.y = 0;
-            if (map.y < Game.stageHeight - map.height) map.y = Game.stageHeight - map.height;
-
-            // player坐标边界值校验
-            if (player.x < player.width * 0.5) player.x = player.width * 0.5;
-            if (player.x > Game.stageWidth - player.width * 0.5) player.x = Game.stageWidth - player.width * 0.5;
-            if (player.y < player.height) player.y = player.height;
-            if (player.y > Game.stageHeight) player.y = Game.stageHeight;
-
-            // 判断是否趋近目标点
-
-            let playerMapPoint = map.globalToLocal(player.x, player.y);
-            let dir = playerMapPoint.subtract(self.toMapPoint);
-            if (dir.length < self.MoveSpeed) {
-                self.isMoving = false;
-                if (self.arrivedCb) self.arrivedCb();
-            }
-
-        }
+		if(self.speedX || self.speedY)
+		    self.onMove();
 
 		return true;
 	}
+
+	// 更新地图/人物的移动
+	private onMove() {
+        let self = this;
+        self.isMoving = true;
+        let isUp = self.speedY < 0;
+        let isLeft = self.speedX < 0;
+        let player = self.player;
+        let map: MapCtrl = MapMgr.instance.curMap;
+
+        // 左右移动
+        if ((isLeft && map.x < 0 && player.x < self.boundLeft)
+            || (!isLeft && map.x + map.width > Game.stageWidth && player.x > self.boundRight))
+            map.x -= self.speedX;       // 地图是反向移动造成人物正向移动的错觉
+        else
+            player.x += self.speedX;    // 当地图不能滚动时移动人物
+
+        // 上下移动
+        if ((isUp && map.y < 0 && player.y < self.boundUp)
+            || (!isUp && map.y + map.height > Game.stageHeight && player.y > self.boundDown))
+            map.y -= self.speedY;
+        else
+            player.y += self.speedY;
+
+        // map坐标边界值校验
+        if (map.x > 0) map.x = 0;
+        if (map.x < Game.stageWidth - map.width) map.x = Game.stageWidth - map.width;
+        if (map.y > 0) map.y = 0;
+        if (map.y < Game.stageHeight - map.height) map.y = Game.stageHeight - map.height;
+
+        // player坐标边界值校验
+        let arrivedBoundX; // X方向是否到达边界
+        let arrivedBoundY; // Y方向是否到达边界
+        if (player.x <= player.width * 0.5) {
+            player.x = player.width * 0.5;
+            arrivedBoundX = true;
+        }
+        if (player.x >= Game.stageWidth - player.width * 0.5) {
+            player.x = Game.stageWidth - player.width * 0.5;
+            arrivedBoundX = true;
+        }
+        if (player.y <= player.height) {
+            player.y = player.height;
+            arrivedBoundY = true;
+        }
+        if (player.y >= Game.stageHeight) {
+            player.y = Game.stageHeight;
+            arrivedBoundY = true;
+        }
+
+        // 到角落了
+        if (arrivedBoundX && arrivedBoundY)
+            return self.stopMove();
+
+        // 判断是否趋近目标点
+        let playerMapPoint = map.globalToLocal(player.x, player.y);
+        let disX = Math.abs(playerMapPoint.x - self.toMapPoint.x);
+        let disY = Math.abs(playerMapPoint.y - self.toMapPoint.y);
+        if (disX < self.MoveSpeed && disY < self.MoveSpeed)
+            return self.stopMove();
+
+        // 垂直于边界无法继续移动的情况
+        if(disX < self.MoveSpeed && arrivedBoundY)
+            return self.stopMove();
+        if(disY < self.MoveSpeed && arrivedBoundX)
+            return self.stopMove();
+    }
+
+    // 停止移动
+    private stopMove(){
+        let self = this;
+        self.isMoving = false;
+        self.speedX = self.speedY = 0;
+        if (self.arrivedCb) self.arrivedCb();
+    }
 
     /**
      * 通过屏幕目标点移动到对应的地图坐标
@@ -176,18 +200,13 @@ class PlayerCtrl{
         let map:MapCtrl = MapMgr.instance.curMap;
         let playerPoint = map.globalToLocal(self.player.x, self.player.y);
         let targetPoint = egret.Point.create(mapX, mapY);
-        let angle = Math.atan2(Math.abs(targetPoint.y - playerPoint.y), Math.abs(targetPoint.x - playerPoint.x));
+        let angle = Math.atan2(targetPoint.y - playerPoint.y, targetPoint.x - playerPoint.x);
         self.speedX = Math.cos(angle) * self.MoveSpeed;
         self.speedY = Math.sin(angle) * self.MoveSpeed;
-        self.isRight = targetPoint.x > playerPoint.x;
-        self.isDown = targetPoint.y > playerPoint.y;
         self.toMapPoint = targetPoint;
-        self.isMoving = true;
         self.arrivedCb = cb;
 
         egret.Point.release(playerPoint); // 缓存实例
         egret.Point.release(targetPoint);
-
-        console.log('moveToMap')
     }
 }
