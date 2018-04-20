@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MapCompSkin" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image id="blurBg" source="small_jpg" width="100%" height="100%"/>
+	<e:Group id="tiles" width="100%" height="100%" x="0" y="0" scaleX="1" scaleY="1" touchEnabled="false" touchChildren="true" touchThrough="true">
+		<e:layout>
+			<e:TileLayout horizontalGap="0" verticalGap="0" horizontalAlign="left" verticalAlign="top"/>
+		</e:layout>
+	</e:Group>
+	<e:Group id="cells" width="100%" height="100%" scaleX="1" scaleY="1" touchEnabled="false" touchChildren="false" touchThrough="true"/>
+	<e:Group id="roleLayer" scaleX="1" scaleY="1" height="100%" width="100%" x="0" y="0" touchEnabled="false" touchThrough="true" touchChildren="true"/>
+</e:Skin>

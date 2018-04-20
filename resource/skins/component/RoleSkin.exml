@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="RoleSkin" xmlns:e="http://ns.egret.com/eui">
+	<e:Image id="player" anchorOffsetX="25" anchorOffsetY="105" scaleX="1" scaleY="1" source="avatarDefault_png" verticalCenter="0" horizontalCenter="0"/>
+</e:Skin>
