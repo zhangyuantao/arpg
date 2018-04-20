@@ -32,6 +32,10 @@
     },
     {
       "name": "promise"
+    },
+    {
+      "name": "framework",
+      "path": "../EgretFramework/framework"
     }
   ]
 }

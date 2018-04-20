@@ -1,8 +1,12 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,small_jpg,a_2_png,radiobutton_select_up_png,handle_png",
+			"keys": "bg_jpg,avatarDefault_png",
 			"name": "preload"
+		},
+		{
+			"keys": "bg_jpg,handle_png,radiobutton_select_up_png,small_jpg",
+			"name": "main"
 		}
 	],
 	"resources": [
@@ -12,34 +16,29 @@
 			"name": "bg_jpg"
 		},
 		{
-			"url": "assets/egret_icon.png",
-			"type": "image",
-			"name": "egret_icon_png"
-		},
-		{
 			"url": "config/description.json",
 			"type": "json",
 			"name": "description_json"
 		},
 		{
-			"name": "small_jpg",
+			"url": "assets/small.jpg",
 			"type": "image",
-			"url": "assets/small.jpg"
+			"name": "small_jpg"
 		},
 		{
-			"name": "a_2_png",
+			"url": "assets/radiobutton_select_up.png",
 			"type": "image",
-			"url": "assets/a_2.png"
+			"name": "radiobutton_select_up_png"
 		},
 		{
-			"name": "radiobutton_select_up_png",
+			"url": "assets/handle.png",
 			"type": "image",
-			"url": "assets/radiobutton_select_up.png"
+			"name": "handle_png"
 		},
 		{
-			"name": "handle_png",
+			"name": "avatarDefault_png",
 			"type": "image",
-			"url": "assets/handle.png"
+			"url": "assets/avatarDefault.png"
 		}
 	]
 }

@@ -1,21 +1,23 @@
-class scene1 extends eui.Component{
+/**
+ * 主城界面
+ */
+class MainCityView extends UI.SkinUIBase{
     private viewPort:eui.Group; // 屏幕视口
-	private map:eui.Group;
-	private mapCells:eui.Group;
-	private player:eui.Image;
+	private mapRoot:eui.Group;
+	private player:Role;
 
-	public constructor() {
-		super();
-		let self:any = this;
-		self.skinName = self.__proto__.__class__ + 'Skin';
-		self.addEventListener(egret.Event.ADDED_TO_STAGE, self.onAddToStage, self);
-		self.viewPort.addEventListener(egret.TouchEvent.TOUCH_TAP, self.touchHandle, self);
-	}
-
-    private onAddToStage(){
+    onCreate(){
+    	super.onCreate();
         let self = this;
-        let ctr:MapCtrl = new MapCtrl(self.map, self.mapCells);
+
+        // 加载地图组件
+        let ctr:MapCtrl = new MapCtrl();
         MapMgr.instance.register('mainCity', ctr, true);
+        ctr.load({width:1600, height:1600, gridData:{'0,0':0,'0,1':1,'0,2':2,'0,3':3}}, self.mapRoot);
+
+        // 实例化一个玩家
+        self.player = new Role();
+        self.viewPort.addChild(self.player);
         PlayerCtrl.instance.init(self.player);
     }
 

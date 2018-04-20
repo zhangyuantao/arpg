@@ -16,8 +16,12 @@
 	},
 	"autoGenerateExmlsList": true,
 	"exmls": [
-		"resource/skins/JoystickSkin.exml",
-		"resource/skins/scene1Skin.exml"
+		"resource/skins/common/LoadingResDlgSkin.exml",
+		"resource/skins/component/JoystickSkin.exml",
+		"resource/skins/component/MapCompSkin.exml",
+		"resource/skins/component/RoleSkin.exml",
+		"resource/skins/main/MainCityViewSkin.exml",
+		"resource/skins/main/MainMenuSkin.exml"
 	],
 	"path": "resource/default.thm.json"
 }

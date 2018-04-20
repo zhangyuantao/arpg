@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="JoystickSkin" width="200" height="200" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group scaleX="1" scaleY="1" height="0" width="0" verticalCenter="0" horizontalCenter="0">
-		<e:Image id="tray" source="radiobutton_select_up_png" anchorOffsetX="75" anchorOffsetY="75" x="0" y="0" scaleX="1" scaleY="1" height="150" width="150" alpha="0.5" touchEnabled="false"/>
-		<e:Image id="handle" source="handle_png" width="60" height="60" y="0" x="0" scaleX="1" scaleY="1" anchorOffsetX="30" anchorOffsetY="30"/>
-	</e:Group>
-</e:Skin>
