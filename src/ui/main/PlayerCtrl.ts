@@ -37,7 +37,7 @@ class PlayerCtrl{
 	init(player:any) {
 		let self = this;
         self.player = player;
-        self.toMapPoint = MapMgr.instance.curMap.globalToLocal(player.x, player.y);
+        self.toMapPoint = MapMgr.instance.map.globalToLocal(player.x, player.y);
         self.boundRight = Utils.StageUtils.stageWidth * self.MovablePercentWidth;
         self.boundLeft = Utils.StageUtils.stageWidth * (1 - self.MovablePercentWidth);
         self.boundDown = Utils.StageUtils.stageHeight * self.MovablePercentHeight;
@@ -55,7 +55,7 @@ class PlayerCtrl{
         let self = this;
         let angle = event.data;
         let point = egret.Point.polar(10000, angle);
-        let playerPoint = MapMgr.instance.curMap.globalToLocal(self.player.x, self.player.y);
+        let playerPoint = MapMgr.instance.map.globalToLocal(self.player.x, self.player.y);
         playerPoint = playerPoint.add(point);
         self.moveToMap(playerPoint.x, playerPoint.y);
     }
@@ -74,7 +74,7 @@ class PlayerCtrl{
 
         let dir = event.data;
 
-        let playerPoint = MapMgr.instance.curMap.globalToLocal(self.player.x, self.player.y);
+        let playerPoint = MapMgr.instance.map.globalToLocal(self.player.x, self.player.y);
         switch (dir) {
             case KeyInputHandler.DIR_LEFT:
                 playerPoint.offset(-10000, 0);
@@ -109,7 +109,7 @@ class PlayerCtrl{
         let isUp = self.speedY < 0;
         let isLeft = self.speedX < 0;
         let player = self.player;
-        let map: MapCtrl = MapMgr.instance.curMap;
+        let map: MapBackground = MapMgr.instance.map;
 
         // 左右移动
         if ((isLeft && map.x < 0 && player.x < self.boundLeft)
@@ -185,8 +185,8 @@ class PlayerCtrl{
      */
 	moveToStage(stageX:number, stageY:number, cb?:Function){
 	    let self = this;
-        let map:MapCtrl = MapMgr.instance.curMap;
-        let toMapPoint = map.globalToLocal(stageX, stageY);
+        //let map:MapCtrl = MapMgr.instance.curMap;
+        let toMapPoint = MapMgr.instance.map.globalToLocal(stageX, stageY);
         self.moveToMap(toMapPoint.x, toMapPoint.y, cb);
         egret.Point.release(toMapPoint); // 缓存实例
     }
@@ -199,7 +199,7 @@ class PlayerCtrl{
      */
     moveToMap(mapX:number, mapY:number, cb?:Function){
 	    let self = this;
-        let map:MapCtrl = MapMgr.instance.curMap;
+        let map:MapBackground = MapMgr.instance.map;
         let playerPoint = map.globalToLocal(self.player.x, self.player.y);
         let targetPoint = egret.Point.create(mapX, mapY);
         let angle = Math.atan2(targetPoint.y - playerPoint.y, targetPoint.x - playerPoint.x);

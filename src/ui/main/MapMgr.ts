@@ -5,7 +5,8 @@ class MapMgr{
     public static instance:MapMgr = new MapMgr();
 
     public mapDict:any;
-    public curMap:MapCtrl;
+    //public curMap:MapCtrl;
+    public map:any;
 
     private constructor(){
         if (MapMgr.instance) throw 'MapMgr.instance单例已存在！';
@@ -27,7 +28,7 @@ class MapMgr{
         }
         self.mapDict[mapType] = ctrl;
 
-        if(isSetCur) self.curMap = ctrl;
+       // if(isSetCur) self.curMap = ctrl;
     }
 
     /**
@@ -36,7 +37,7 @@ class MapMgr{
      */
     setCurMap(type:string){
         let self = this;
-        self.curMap = self.getCtrl(type);
+      //  self.curMap = self.getCtrl(type);
     }
 
     /**

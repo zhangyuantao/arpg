@@ -127,7 +127,6 @@ declare namespace Res {
     }
 }
 declare namespace Scene {
-    import DisplayObjectContainer = egret.DisplayObjectContainer;
     interface IScene {
         data: any;
         key: string;
@@ -190,7 +189,7 @@ declare namespace Scene {
          * @param {Swift.UI.LayerBase} layer
          * @param {egret.DisplayObject} ui
          */
-        addToLayer(layer: DisplayObjectContainer, ui: egret.DisplayObject): void;
+        addToLayer(layer: egret.DisplayObjectContainer, ui: egret.DisplayObject): void;
         /**
          * 移除ui元素
          * @param {egret.DisplayObject} ui
@@ -425,6 +424,7 @@ declare namespace UI {
  */
 declare namespace UI {
     class EUILayer extends eui.UILayer {
+        constructor();
     }
 }
 /**

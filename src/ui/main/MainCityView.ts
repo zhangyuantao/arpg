@@ -11,14 +11,23 @@ class MainCityView extends UI.SkinUIBase{
         let self = this;
 
         // 加载地图组件
-        let ctr:MapCtrl = new MapCtrl();
-        MapMgr.instance.register('mainCity', ctr, true);
-        ctr.load({width:1600, height:1600, gridData:{'0,0':0,'0,1':1,'0,2':2,'0,3':3}}, self.mapRoot);
+       // let ctr:MapCtrl = new MapCtrl();
+       // MapMgr.instance.register('mainCity', ctr, true);
+       // ctr.load({width:1600, height:1600, gridData:{'0,0':0,'0,1':1,'0,2':2,'0,3':3}}, self.mapRoot);
+
+        let map:MapBackground = new MapBackground();
+        MapMgr.instance.map = map;
+        map.init(1193);
+        self.mapRoot.addChild(map);
 
         // 实例化一个玩家
-        self.player = new Role();
-        self.viewPort.addChild(self.player);
-        PlayerCtrl.instance.init(self.player);
+        setTimeout(()=>{
+            self.player = new Role();
+            self.player.x = 100;
+            self.player.y = 200;
+            self.viewPort.addChild(self.player);
+            PlayerCtrl.instance.init(self.player);
+        },100);
     }
 
     private touchHandle(event:egret.TouchEvent){

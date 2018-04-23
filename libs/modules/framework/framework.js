@@ -1113,7 +1113,10 @@ var UI;
     var EUILayer = (function (_super) {
         __extends(EUILayer, _super);
         function EUILayer() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super.call(this) || this;
+            _this.touchThrough = true;
+            _this.touchEnabled = false;
+            return _this;
         }
         return EUILayer;
     }(eui.UILayer));
